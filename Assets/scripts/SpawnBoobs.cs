@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class SpawnBoobs : MonoBehaviour
 {
@@ -16,8 +17,12 @@ public class SpawnBoobs : MonoBehaviour
     public GameObject currentBoob;  //most recent boobie
 
     [SerializeField] GameObject boobPoof;
+
     [SerializeField] GameObject niceBoobPoof;
     
+    int goldenTiddies = 0;
+    [SerializeField] TextMeshProUGUI goldenTiddiesText;
+
     void Start()
     {
         if (instance != null)
@@ -103,9 +108,11 @@ public class SpawnBoobs : MonoBehaviour
     }
     public void SpawnOnCollision(int next, Vector2 newPos)
     {
+
         Instantiate(boobPoof, newPos, boobPoof.transform.rotation);
         if (next < boobs.Length)
         {
+            
             GameObject obj = Instantiate(boobs[next], newPos, Quaternion.identity);
             obj.AddComponent<Rigidbody2D>();
             obj.transform.SetParent(boobParent.transform);
@@ -114,6 +121,10 @@ public class SpawnBoobs : MonoBehaviour
             
             
             BoobMG.instance.AddPoints(next);
+
+            if(next == 8){  //if indexes change this wont work (wihtout fixing duh) (also index is the array index, not the index given on the OneBoob script)
+                UpdateGoldenTiddies();
+            }
         }
         else
         {
@@ -132,6 +143,12 @@ public class SpawnBoobs : MonoBehaviour
         yield return new WaitForSeconds(1f);
         SpawnBoob(Random.Range(0,3));
         
+    }
+
+    void UpdateGoldenTiddies(){
+        Debug.Log("noniin tissit");
+        goldenTiddies++;
+        goldenTiddiesText.text = goldenTiddies.ToString();
     }
 
 
