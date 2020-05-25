@@ -10,6 +10,7 @@ public class SpawnBoobs : MonoBehaviour
     [SerializeField] GameObject boobParent; //parents all boobs
     //public List<OneBoob> allBoobs = new List<OneBoob>();
     [SerializeField] Transform leftSide, rightSide; //boundaries
+    [SerializeField] BoxCollider2D barrierCollider; // for adjusting offsets, keep both the same size!!!!!!!!
     float leftSideX, rightSideX;
 
     [SerializeField] GameObject deathBar;
@@ -19,9 +20,11 @@ public class SpawnBoobs : MonoBehaviour
     [SerializeField] GameObject boobPoof;
 
     [SerializeField] GameObject niceBoobPoof;
-    
+
     int goldenTiddies = 0;
     [SerializeField] TextMeshProUGUI goldenTiddiesText;
+
+    public float currentX;
 
     void Start()
     {
@@ -34,8 +37,9 @@ public class SpawnBoobs : MonoBehaviour
             instance = this;
         }
 
-        leftSideX = leftSide.position.x + 0.7f;
-        rightSideX = rightSide.position.x - 0.7f;
+        leftSideX = leftSide.position.x + barrierCollider.size.x/2;
+
+        rightSideX = rightSide.position.x - barrierCollider.size.x/2;
 
         aimLine.SetActive(false);
         niceBoobPoof.SetActive(false);
@@ -48,7 +52,7 @@ public class SpawnBoobs : MonoBehaviour
         {
             if (currentBoob != null)
             {
-
+                currentX = currentBoob.transform.position.x;
                 aimLine.SetActive(true);
 
                 float mouseX = Camera.main.ScreenToWorldPoint(Input.mousePosition).x;
@@ -60,16 +64,22 @@ public class SpawnBoobs : MonoBehaviour
                     if (currentBoob.transform.position.x < rightSideX && (boobX - mouseX > 0.08f || boobX - mouseX < -0.08f))
                     {
 
-                        currentBoob.transform.Translate(new Vector2(0.15f, 0));
-                        
+                        currentBoob.transform.Translate(new Vector2(0.17f, 0));
+
                     }
                 }
                 //SLIDE TO THE LEFT
                 else if (currentBoob.transform.position.x > leftSideX && (boobX - mouseX > 0.08f || boobX - mouseX < -0.08f))
                 {
-                    currentBoob.transform.Translate(new Vector2(-0.15f, 0));
+                    currentBoob.transform.Translate(new Vector2(-0.17f, 0));
                 }
 
+                if(currentBoob.transform.position.x > rightSideX){
+                    currentBoob.transform.position = new Vector2(rightSideX, currentBoob.transform.position.y);
+                }
+                if(currentBoob.transform.position.x < leftSideX){
+                    currentBoob.transform.position = new Vector2(leftSideX, currentBoob.transform.position.y);
+                }
                 aimLine.transform.position = new Vector2(currentBoob.transform.position.x, aimLine.transform.position.y);
 
 
@@ -102,7 +112,14 @@ public class SpawnBoobs : MonoBehaviour
             currentBoob = obj;
 
             obj.transform.SetParent(transform);
-           // allBoobs.Add(obj.GetComponent<OneBoob>());
+
+
+            CircleCollider2D colliderTemp = currentBoob.GetComponent<CircleCollider2D>();
+            float scaleTemp = currentBoob.transform.localScale.x;
+            float tempOffset = (colliderTemp.radius * scaleTemp) + 0.15f; // lil extra on top because tits always crossing the boundaries??????
+            leftSideX = leftSide.position.x + tempOffset;
+            rightSideX = rightSide.position.x - tempOffset;
+            // allBoobs.Add(obj.GetComponent<OneBoob>());
         }
 
     }
@@ -112,27 +129,28 @@ public class SpawnBoobs : MonoBehaviour
         Instantiate(boobPoof, newPos, boobPoof.transform.rotation);
         if (next < boobs.Length)
         {
-            
+
             GameObject obj = Instantiate(boobs[next], newPos, Quaternion.identity);
             obj.AddComponent<Rigidbody2D>();
             obj.transform.SetParent(boobParent.transform);
             obj.GetComponent<OneBoob>().BoobDropped();
             obj.GetComponent<Rigidbody2D>().AddForce(new Vector2(Random.Range(-1f, 1f), Random.Range(-1f, 1f)), ForceMode2D.Impulse);
-            
-            
+
+
             BoobMG.instance.AddPoints(next);
 
-            if(next == 8){  //if indexes change this wont work (wihtout fixing duh) (also index is the array index, not the index given on the OneBoob script)
+            if (next == 8)
+            {  //if indexes change this wont work (wihtout fixing duh) (also index is the array index, not the index given on the OneBoob script)
                 UpdateGoldenTiddies();
             }
         }
         else
         {
             Debug.Log("godlike");
-            BoobMG.instance.AddPoints(next*2);
+            BoobMG.instance.AddPoints(next * 2);
             niceBoobPoof.SetActive(true);
-          
-            
+
+
         }
     }
 
@@ -141,11 +159,12 @@ public class SpawnBoobs : MonoBehaviour
         yield return new WaitForSeconds(1f);
         //deathBar.SetActive(true);
         yield return new WaitForSeconds(1f);
-        SpawnBoob(Random.Range(0,3));
-        
+        SpawnBoob(Random.Range(0, 3));
+
     }
 
-    void UpdateGoldenTiddies(){
+    void UpdateGoldenTiddies()
+    {
         Debug.Log("noniin tissit");
         goldenTiddies++;
         goldenTiddiesText.text = goldenTiddies.ToString();
