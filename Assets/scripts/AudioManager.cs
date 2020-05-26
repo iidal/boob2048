@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AudioManager : MonoBehaviour
 {   
@@ -11,6 +12,9 @@ public class AudioManager : MonoBehaviour
     [SerializeField] AudioClip matchClip;
     bool playingSound = false;
     bool playingMatchSound = false;
+    bool audioON = true;
+    [SerializeField] Image audioButtonImage;
+    [SerializeField] Sprite audioOffIcon, audioOnIcon;
     void Start()
     {
         if(instance != null){ Destroy(this);}
@@ -45,6 +49,20 @@ public class AudioManager : MonoBehaviour
             boobsAS.PlayOneShot(matchClip, 1f);
             yield return new WaitForSeconds(0.4f);
             playingMatchSound = false;
+        }
+
+    }
+
+    public void ToggleAudio(){
+        if(audioON){
+            audioON = false;
+            AudioListener.volume = 0;
+            audioButtonImage.sprite = audioOffIcon;
+        }
+        else{
+            audioON = true;
+            AudioListener.volume = 1;
+            audioButtonImage.sprite = audioOnIcon;
         }
 
     }

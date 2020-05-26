@@ -37,9 +37,9 @@ public class SpawnBoobs : MonoBehaviour
             instance = this;
         }
 
-        leftSideX = leftSide.position.x + barrierCollider.size.x/2;
+        leftSideX = leftSide.position.x + barrierCollider.size.x / 2;
 
-        rightSideX = rightSide.position.x - barrierCollider.size.x/2;
+        rightSideX = rightSide.position.x - barrierCollider.size.x / 2;
 
         aimLine.SetActive(false);
         niceBoobPoof.SetActive(false);
@@ -50,6 +50,9 @@ public class SpawnBoobs : MonoBehaviour
         //MOVE
         if (Input.GetMouseButton(0))
         {
+
+    
+
             if (currentBoob != null)
             {
                 currentX = currentBoob.transform.position.x;
@@ -74,10 +77,12 @@ public class SpawnBoobs : MonoBehaviour
                     currentBoob.transform.Translate(new Vector2(-0.17f, 0));
                 }
 
-                if(currentBoob.transform.position.x > rightSideX){
+                if (currentBoob.transform.position.x > rightSideX)
+                {
                     currentBoob.transform.position = new Vector2(rightSideX, currentBoob.transform.position.y);
                 }
-                if(currentBoob.transform.position.x < leftSideX){
+                if (currentBoob.transform.position.x < leftSideX)
+                {
                     currentBoob.transform.position = new Vector2(leftSideX, currentBoob.transform.position.y);
                 }
                 aimLine.transform.position = new Vector2(currentBoob.transform.position.x, aimLine.transform.position.y);
