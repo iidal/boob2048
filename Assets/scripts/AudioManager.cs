@@ -19,6 +19,8 @@ public class AudioManager : MonoBehaviour
     {
         if(instance != null){ Destroy(this);}
         else{instance = this;}
+        
+        CheckAndApplySettings();
     }
 
     // Update is called once per frame
@@ -64,6 +66,31 @@ public class AudioManager : MonoBehaviour
             AudioListener.volume = 1;
             audioButtonImage.sprite = audioOnIcon;
         }
+        SaveAudioSettings(audioON); //not necessary to pass as parameter but i copied this from my other project and am lazy
+    }
+     void CheckAndApplySettings(){
 
+        //AUDIO
+        //0 = off, 1 = 0n
+        int audioBool = PlayerPrefs.GetInt("audioOn", 1);
+        if(audioBool == 1){
+            if(!audioON){
+                AudioManager.instance.ToggleAudio();
+            }
+        }else if(audioBool ==0){
+            if(audioON){
+                AudioManager.instance.ToggleAudio();
+            }
+        }
+        else{
+            Debug.Log("audio playerprefs is fucked up");
+        }
+
+    }
+    public void SaveAudioSettings(bool isOn){
+        if(isOn)
+            PlayerPrefs.SetInt("audioOn", 1);
+        else
+            PlayerPrefs.SetInt("audioOn", 0);
     }
 }
