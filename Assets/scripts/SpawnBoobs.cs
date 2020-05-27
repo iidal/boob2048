@@ -64,7 +64,7 @@ public class SpawnBoobs : MonoBehaviour
                 //STEP TO THE RIGHT
                 if (boobX < mouseX)
                 {
-                    if (currentBoob.transform.position.x < rightSideX && (boobX - mouseX > 0.08f || boobX - mouseX < -0.08f))
+                    if (currentBoob.transform.position.x < rightSideX && (boobX - mouseX > 0.09f || boobX - mouseX < -0.09f))
                     {
 
                         currentBoob.transform.Translate(new Vector2(0.17f, 0));
@@ -72,7 +72,7 @@ public class SpawnBoobs : MonoBehaviour
                     }
                 }
                 //SLIDE TO THE LEFT
-                else if (currentBoob.transform.position.x > leftSideX && (boobX - mouseX > 0.08f || boobX - mouseX < -0.08f))
+                else if (currentBoob.transform.position.x > leftSideX && (boobX - mouseX > 0.09f || boobX - mouseX < -0.09f))
                 {
                     currentBoob.transform.Translate(new Vector2(-0.17f, 0));
                 }
