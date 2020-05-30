@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class DeathBar : MonoBehaviour
 {
-    public float timer;
-    bool touching = false;
+    float timer;
+    public bool touching = false;
     void Start()
     {
 
@@ -35,7 +35,7 @@ public class DeathBar : MonoBehaviour
         while (touching == true)
         {
             timer += Time.deltaTime;
-            if (timer > 1f)
+            if (timer > 1.5f)
             {
                 Debug.Log("gameover");
                 BoobMG.instance.GameOver();

@@ -14,6 +14,7 @@ public class SpawnBoobs : MonoBehaviour
     float leftSideX, rightSideX;
 
     [SerializeField] GameObject deathBar;
+    public DeathBar deathBarMG;
     [SerializeField] GameObject aimLine;
     public GameObject currentBoob;  //most recent boobie
 
@@ -24,7 +25,7 @@ public class SpawnBoobs : MonoBehaviour
     int goldenTiddies = 0;
     [SerializeField] TextMeshProUGUI goldenTiddiesText;
 
-    public float currentX;
+
 
     void Start()
     {
@@ -43,6 +44,7 @@ public class SpawnBoobs : MonoBehaviour
 
         aimLine.SetActive(false);
         niceBoobPoof.SetActive(false);
+        deathBarMG = deathBar.GetComponentInChildren<DeathBar>();
         //SpawnBoob(0);
     }
     void Update()
@@ -51,11 +53,11 @@ public class SpawnBoobs : MonoBehaviour
         if (Input.GetMouseButton(0))
         {
 
-    
+
 
             if (currentBoob != null)
             {
-                currentX = currentBoob.transform.position.x;
+
                 aimLine.SetActive(true);
 
                 float mouseX = Camera.main.ScreenToWorldPoint(Input.mousePosition).x;
@@ -110,8 +112,15 @@ public class SpawnBoobs : MonoBehaviour
 
     public void SpawnBoob(int boobIndex)
     {
+        StartCoroutine("SpawnBoobOnSpawn", boobIndex);
+    }
+    IEnumerator SpawnBoobOnSpawn(int boobIndex)
+    {
+        yield return new WaitUntil(() => deathBarMG.touching == false);
+
         if (!BoobMG.instance.isGameOver)
         {
+
             //deathBar.SetActive(false);
             GameObject obj = Instantiate(boobs[boobIndex], transform.position, Quaternion.identity);
             currentBoob = obj;
@@ -149,7 +158,7 @@ public class SpawnBoobs : MonoBehaviour
                 UpdateGoldenTiddies();
             }
         }
-        else
+        else if (next == boobs.Length)
         {
             Debug.Log("godlike");
             BoobMG.instance.AddPoints(next * 2);
