@@ -14,8 +14,9 @@ public class BoobMG : MonoBehaviour
     [SerializeField] TextMeshProUGUI highScoreText;
     int points = 0;
 
-    [SerializeField] Text pointsText;
+    [SerializeField] TextMeshProUGUI pointsText;
     [SerializeField] GameObject GameOverScreen;
+    [SerializeField] TextMeshProUGUI scoreBreakdownText;
     AudioSource managerAS;
     [SerializeField] AudioClip loseSound;
     void Start()
@@ -44,8 +45,16 @@ public class BoobMG : MonoBehaviour
         isGameOver = true;
         GameOverScreen.SetActive(true);
         managerAS.PlayOneShot(loseSound);
+        int goldTids = SpawnBoobs.instance.goldenTiddies;
 
-
+        
+        if(goldTids < 1){
+            scoreBreakdownText.text = points.ToString() + " points  * " + goldTids.ToString() + " point multiplier, <br> you got " + (points*goldTids) + " points!";
+            points = points * goldTids;
+        }
+        else {
+            scoreBreakdownText.text = points.ToString() + " points!";
+        }
         if (points > highScore)
         {
             SaveLoad.SaveHighScore(points);

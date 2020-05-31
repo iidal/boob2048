@@ -22,7 +22,8 @@ public class SpawnBoobs : MonoBehaviour
 
     [SerializeField] GameObject niceBoobPoof;
 
-    int goldenTiddies = 0;
+    [HideInInspector]public int goldenTiddies = 1; // 1 because gold tids are converted to a point multiplier, which is tids +1. so it starts at one, w
+    
     [SerializeField] TextMeshProUGUI goldenTiddiesText;
 
 
@@ -45,6 +46,7 @@ public class SpawnBoobs : MonoBehaviour
         aimLine.SetActive(false);
         niceBoobPoof.SetActive(false);
         deathBarMG = deathBar.GetComponentInChildren<DeathBar>();
+        goldenTiddiesText.text = "x " + goldenTiddies.ToString();
         //SpawnBoob(0);
     }
     void Update()
@@ -179,9 +181,9 @@ public class SpawnBoobs : MonoBehaviour
 
     void UpdateGoldenTiddies()
     {
-        Debug.Log("noniin tissit");
+        // more like update point multiplier but who cares
         goldenTiddies++;
-        goldenTiddiesText.text = goldenTiddies.ToString();
+        goldenTiddiesText.text = "x " + goldenTiddies.ToString();
     }
 
 
