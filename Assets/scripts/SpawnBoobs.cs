@@ -47,6 +47,7 @@ public class SpawnBoobs : MonoBehaviour
         niceBoobPoof.SetActive(false);
         deathBarMG = deathBar.GetComponentInChildren<DeathBar>();
         goldenTiddiesText.text = "x " + goldenTiddies.ToString();
+        goldenTiddiesText.gameObject.SetActive(false);
         //SpawnBoob(0);
     }
     void Update()
@@ -181,6 +182,9 @@ public class SpawnBoobs : MonoBehaviour
 
     void UpdateGoldenTiddies()
     {
+        if(!goldenTiddiesText.gameObject.activeSelf){
+            goldenTiddiesText.gameObject.SetActive(true);
+        }
         // more like update point multiplier but who cares
         goldenTiddies++;
         goldenTiddiesText.text = "x " + goldenTiddies.ToString();

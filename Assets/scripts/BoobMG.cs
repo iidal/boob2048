@@ -48,7 +48,7 @@ public class BoobMG : MonoBehaviour
         int goldTids = SpawnBoobs.instance.goldenTiddies;
 
         
-        if(goldTids < 1){
+        if(goldTids > 1){
             scoreBreakdownText.text = points.ToString() + " points  * " + goldTids.ToString() + " point multiplier, <br> you got " + (points*goldTids) + " points!";
             points = points * goldTids;
         }

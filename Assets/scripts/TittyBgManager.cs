@@ -15,7 +15,7 @@ public class TittyBgManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {   
-        f += Time.deltaTime * 0.4f;
+        f += Time.deltaTime * 0.2f;
         bgMat.SetTextureOffset("_MainTex", new Vector2(f, 0));
     }
 }
