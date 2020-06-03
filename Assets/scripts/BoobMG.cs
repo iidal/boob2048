@@ -12,7 +12,9 @@ public class BoobMG : MonoBehaviour
 
     int highScore = 0;
     [SerializeField] TextMeshProUGUI highScoreText;
+    [SerializeField] GameObject infoText;
     int points = 0;
+    int multipliedPoints = 0;
 
     [SerializeField] TextMeshProUGUI pointsText;
     [SerializeField] GameObject GameOverScreen;
@@ -47,12 +49,14 @@ public class BoobMG : MonoBehaviour
         managerAS.PlayOneShot(loseSound);
         int goldTids = SpawnBoobs.instance.goldenTiddies;
 
-        
-        if(goldTids > 1){
-            scoreBreakdownText.text = points.ToString() + " points  * " + goldTids.ToString() + " point multiplier, <br> you got " + (points*goldTids) + " points!";
+
+        if (goldTids > 1)
+        {
+            scoreBreakdownText.text = points.ToString() + " points  * " + goldTids.ToString() + " point multiplier, <br> you got " + (points * goldTids) + " points!";
             points = points * goldTids;
         }
-        else {
+        else
+        {
             scoreBreakdownText.text = points.ToString() + " points!";
         }
         if (points > highScore)
@@ -70,13 +74,22 @@ public class BoobMG : MonoBehaviour
     public void AddPoints(int amount)
     {
         points += amount;
-        pointsText.text = points.ToString();
+        multipliedPoints = points*SpawnBoobs.instance.goldenTiddies;
+        pointsText.text = multipliedPoints.ToString();
     }
 
     void LoadHighScore()
     {
         highScore = SaveLoad.LoadHighScore();
-        highScoreText.text = highScore.ToString();
+        highScoreText.text = "high score: <br>" + highScore.ToString();
     }
 
+    public void ToggleInfo()
+    {
+        if (infoText.activeSelf)
+        {
+            infoText.SetActive(false);
+        }
+        else { infoText.SetActive(true); }
+    }
 }

@@ -1,19 +1,25 @@
 fileFormatVersion: 2
-guid: c004d5af74227d846abac0d0d031e0a9
+guid: cc494ee13fee90c4b8838e1c89bdf096
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2410488123379206968
-    second: menuicons_0
+      213: 7445361565122608405
+    second: menu_icons_0
   - first:
-      213: -3484664662673085699
-    second: menuicons_4
+      213: -6156734527584826635
+    second: menu_icons_4
   - first:
-      213: 4089044657919818809
-    second: menuicons_5
+      213: 6170638519695533552
+    second: menu_icons_5
   - first:
-      213: 2268482923587032321
-    second: menuicons_7
+      213: 3325349197224095653
+    second: menu_icons_7
+  - first:
+      213: 178127713899162326
+    second: menu_icons_9
+  - first:
+      213: -6054023047400858896
+    second: menu_icons_10
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -72,7 +78,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 2
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 256
+    maxTextureSize: 512
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -83,7 +89,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   - serializedVersion: 2
     buildTarget: Standalone
-    maxTextureSize: 256
+    maxTextureSize: 512
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -94,7 +100,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   - serializedVersion: 2
     buildTarget: Android
-    maxTextureSize: 256
+    maxTextureSize: 512
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -105,7 +111,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   - serializedVersion: 2
     buildTarget: WebGL
-    maxTextureSize: 256
+    maxTextureSize: 512
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 1
@@ -118,13 +124,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: menuicons_0
+      name: menu_icons_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 277
-        width: 288
-        height: 203
+        y: 561
+        width: 286
+        height: 202
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -132,20 +138,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c7cab34e23b211743806137fa6d75de7
-      internalID: 2410488123379206968
+      spriteID: b18aee5847d591349b4b5bd0649647e8
+      internalID: 7445361565122608405
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: menuicons_4
+      name: menu_icons_4
       rect:
         serializedVersion: 2
-        x: 373
-        y: 266
-        width: 243
-        height: 214
+        x: 372
+        y: 548
+        width: 244
+        height: 215
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -153,20 +159,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4d304f861175a4f42b805cbb55f2dc79
-      internalID: -3484664662673085699
+      spriteID: dd52c6da4f9540d468aff6a87b1e446c
+      internalID: -6156734527584826635
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: menuicons_5
+      name: menu_icons_5
       rect:
         serializedVersion: 2
         x: 0
-        y: 10
-        width: 279
-        height: 198
+        y: 288
+        width: 286
+        height: 202
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -174,20 +180,62 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2466f2778ec83844fb670c67d40aaf4f
-      internalID: 4089044657919818809
+      spriteID: fba22dffe0331db45a47ba0f8fc7b6a0
+      internalID: 6170638519695533552
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: menuicons_7
+      name: menu_icons_7
       rect:
         serializedVersion: 2
-        x: 419
+        x: 418
+        y: 262
+        width: 166
+        height: 221
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0e8e9e2f73b8147469645ecbc5ebf564
+      internalID: 3325349197224095653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: menu_icons_9
+      rect:
+        serializedVersion: 2
+        x: 20
+        y: 53
+        width: 237
+        height: 186
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9833340e4018594eaf1bf0dc561058f
+      internalID: 178127713899162326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: menu_icons_10
+      rect:
+        serializedVersion: 2
+        x: 310
         y: 0
-        width: 162
-        height: 200
+        width: 238
+        height: 247
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -195,8 +243,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4b7ca496225cfd143abd69854a0cd190
-      internalID: 2268482923587032321
+      spriteID: f276805b9bc1dde449afbfef662872ad
+      internalID: -6054023047400858896
       vertices: []
       indices: 
       edges: []
@@ -204,7 +252,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: ce48fc67456c7c042902e7697a89ca44
+    spriteID: f9686f705f143e643adbefc5dabc4847
     internalID: 0
     vertices: []
     indices: 
