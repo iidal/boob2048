@@ -52,7 +52,7 @@ public class BoobMG : MonoBehaviour
 
         if (goldTids > 1)
         {
-            scoreBreakdownText.text = points.ToString() + " points  * " + goldTids.ToString() + " point multiplier, <br> you got " + (points * goldTids) + " points!";
+            scoreBreakdownText.text = points.ToString() + " points  * " + goldTids.ToString() + " point multiplier= <br> <size=35> " + (points * goldTids).ToString() + " points!";
             points = points * goldTids;
         }
         else

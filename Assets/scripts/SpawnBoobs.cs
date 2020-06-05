@@ -21,6 +21,7 @@ public class SpawnBoobs : MonoBehaviour
     [SerializeField] GameObject boobPoof;
 
     [SerializeField] GameObject niceBoobPoof;
+    [SerializeField] ParticleSystem multiplierPoof;
 
     [HideInInspector]public int goldenTiddies = 1; // 1 because gold tids are converted to a point multiplier, which is tids +1. so it starts at one, w
     
@@ -164,7 +165,7 @@ public class SpawnBoobs : MonoBehaviour
         else if (next == boobs.Length)
         {
             Debug.Log("godlike");
-            BoobMG.instance.AddPoints(next * 2);
+            BoobMG.instance.AddPoints(100);
             niceBoobPoof.SetActive(true);
 
 
@@ -188,6 +189,7 @@ public class SpawnBoobs : MonoBehaviour
         // more like update point multiplier but who cares
         goldenTiddies++;
         goldenTiddiesText.text = "x " + goldenTiddies.ToString();
+        multiplierPoof.Play();
     }
 
 
