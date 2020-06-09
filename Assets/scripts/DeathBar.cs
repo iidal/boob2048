@@ -6,6 +6,9 @@ public class DeathBar : MonoBehaviour
 {
     float timer;
     public bool touching = false;
+
+    [SerializeField] Animator gameAreaAnim;
+
     void Start()
     {
 
@@ -31,13 +34,14 @@ public class DeathBar : MonoBehaviour
 
     IEnumerator CheckDeathBar()
     {
-
+        yield return new WaitForSeconds(0.5f);
+        gameAreaAnim.SetBool("CheckingDeath", true);
         while (touching == true)
         {
             timer += Time.deltaTime;
             if (timer > 1.5f)
             {
-                Debug.Log("gameover");
+            
                 BoobMG.instance.GameOver();
                 this.gameObject.SetActive(false);
             }
@@ -45,6 +49,7 @@ public class DeathBar : MonoBehaviour
 
         }
         timer = 0;
+        gameAreaAnim.SetBool("CheckingDeath", false);
 
         yield return null;
     }
